@@ -7,7 +7,7 @@
 - Le répertoire "resultat_question_bonus": qui contient les résultats de la question_bonus de l'exercice
 
 - Les fichiers de configuration (certificats, clés) et le bloc de genèse se trouvent (respectivement) dans les répertoires "crypto-config" et "channel-artifacts",
-- qui sont deux sous-répertoires du répertoire "resultats_question2".
+  qui sont deux sous-répertoires du répertoire "resultats_question2".
 
 - Pour lancer les services "orderers" et "peers": Se placer dans le répertoire "resultats_question2" et taper la commande "docker-compose up -d".
 - Pour lancer le service "mysql": Se placer dans le répertoire "resultats_question4" et taper la commande "docker compose -f docker-compose-sql.yml up -d mysql".

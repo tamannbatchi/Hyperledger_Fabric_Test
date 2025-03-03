@@ -1,4 +1,5 @@
-- Cloner ce dépôt: git clone https://github.com/tamannbatchi/Hyperledger_Fabric_Test.git 
+- Cloner ce dépôt: git clone https://github.com/tamannbatchi/Hyperledger_Fabric_Test.git
+-  
  Ce dépôt est constitué de quatre répertoires principaux:
 - Le répertoire "my-fabric-app": qui contient les résultats de la question3 de l'exercice
 - Le répertoire "resultats_question2": qui contient les résultats de la question2 de l'exercice

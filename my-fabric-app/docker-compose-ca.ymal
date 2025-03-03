@@ -1,0 +1,56 @@
+version: '2'
+
+networks:
+  fabric-network:
+
+services:
+  ca.dana.example.com:
+    image: hyperledger/fabric-ca
+    container_name: ca.dana.example.com
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.dana.example.com
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.dana.example.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+    ports:
+      - "7054:7054"
+    volumes:
+      - ./crypto-config/peerOrganizations/dana.example.com/ca:/etc/hyperledger/fabric-ca-server-config
+    networks:
+      - fabric-network
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+
+  ca.gopay.example.com:
+    image: hyperledger/fabric-ca
+    container_name: ca.gopay.example.com
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.gopay.example.com
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.gopay.example.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+    ports:
+      - "7055:7054"
+    volumes:
+      - ./crypto-config/peerOrganizations/gopay.example.com/ca:/etc/hyperledger/fabric-ca-server-config
+    networks:
+      - fabric-network
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+
+  ca.bi.example.com:
+    image: hyperledger/fabric-ca
+    container_name: ca.bi.example.com
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.bi.example.com
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.bi.example.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+    ports:
+      - "7056:7054"
+    volumes:
+      - ./crypto-config/ordererOrganizations/bi.example.com/ca:/etc/hyperledger/fabric-ca-server-config
+    networks:
+      - fabric-network
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'

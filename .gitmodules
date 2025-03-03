@@ -1,0 +1,3 @@
+[submodule "resultats_question2/fabric-samples"]
+	path = resultats_question2/fabric-samples
+	url = https://github.com/hyperledger/fabric-samples.git

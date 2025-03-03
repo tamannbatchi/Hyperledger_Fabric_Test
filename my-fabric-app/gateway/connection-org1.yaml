@@ -1,0 +1,90 @@
+name: "fabric-network"
+version: "1.0.0"
+
+client:
+  organization: Dana
+  connection:
+    timeout:
+      peer:
+        endorser: 300
+
+organizations:
+  Dana:
+    mspid: DanaMSP
+    cryptopath: ./crypto-config/peerOrganizations/dana.example.com/users/Admin@dana.example.com/msp
+    peers:
+      - peer0.dana.example.com
+      - peer1.dana.example.com
+    certificateAuthorities:
+      - ca.dana.example.com
+  Gopay:
+    mspid: GopayMSP
+    cryptopath: ./crypto-config/peerOrganizations/gopay.example.com/users/Admin@gopay.example.com/msp
+    peers:
+      - peer0.gopay.example.com
+      - peer1.gopay.example.com
+    certificateAuthorities:
+      - ca.gopay.example.com
+  BI:
+    mspid: OrgMSP
+    cryptopath: ./crypto-config/ordererOrganizations/bi.example.com/users/Admin@bi.example.com/msp
+    peers:
+      - orderer0.bi.example.com
+      - orderer1.bi.example.com
+      - orderer2.bi.example.com
+    certificateAuthorities:
+      - ca.bi.example.com
+
+orderers:
+  orderer0.bi.example.com:
+    url: grpcs://orderer0.bi.example.com:7050
+    grpcOptions:
+      ssl-target-name-override: orderer0.bi.example.com
+    tlsCACerts:
+      path: ./crypto-config/ordererOrganizations/bi.example.com/orderers/orderer0.bi.example.com/msp/tlscacerts/tlsca.bi.example.com-cert.pem
+
+  orderer1.bi.example.com:
+    url: grpcs://orderer1.bi.example.com:7050
+    grpcOptions:
+      ssl-target-name-override: orderer1.bi.example.com
+    tlsCACerts:
+      path: ./crypto-config/ordererOrganizations/bi.example.com/orderers/orderer1.bi.example.com/msp/tlscacerts/tlsca.bi.example.com-cert.pem
+
+  orderer2.bi.example.com:
+    url: grpcs://orderer2.bi.example.com:7050
+    grpcOptions:
+      ssl-target-name-override: orderer2.bi.example.com
+    tlsCACerts:
+      path: ./crypto-config/ordererOrganizations/bi.example.com/orderers/orderer2.bi.example.com/msp/tlscacerts/tlsca.bi.example.com-cert.pem
+
+peers:
+  peer0.dana.example.com:
+    url: grpcs://peer0.dana.example.com:7051
+    tlsCACerts:
+      path: ./crypto-config/peerOrganizations/dana.example.com/peers/peer0.dana.example.com/msp/tlscacerts/tlsca.dana.example.com-cert.pem
+  peer1.dana.example.com:
+    url: grpcs://peer1.dana.example.com:7051
+    tlsCACerts:
+      path: ./crypto-config/peerOrganizations/dana.example.com/peers/peer1.dana.example.com/msp/tlscacerts/tlsca.dana.example.com-cert.pem
+  peer0.gopay.example.com:
+    url: grpcs://peer0.gopay.example.com:7051
+    tlsCACerts:
+      path: ./crypto-config/peerOrganizations/gopay.example.com/peers/peer0.gopay.example.com/msp/tlscacerts/tlsca.gopay.example.com-cert.pem
+  peer1.gopay.example.com:
+    url: grpcs://peer1.gopay.example.com:7051
+    tlsCACerts:
+      path: ./crypto-config/peerOrganizations/gopay.example.com/peers/peer1.gopay.example.com/msp/tlscacerts/tlsca.gopay.example.com-cert.pem
+
+certificateAuthorities:
+  ca.dana.example.com:
+    url: https://ca.dana.example.com:7054
+    tlsCACerts:
+      path: ./crypto-config/peerOrganizations/dana.example.com/peers/peer0.dana.example.com/tls/ca.crt
+  ca.gopay.example.com:
+    url: https://ca.gopay.example.com:7054
+    tlsCACerts:
+      path: ./crypto-config/peerOrganizations/gopay.example.com/peers/peer0.gopay.example.com/tls/ca.crt
+  ca.bi.example.com:
+    url: https://ca.bi.example.com:7054
+    tlsCACerts:
+      path: ./crypto-config/ordererOrganizations/bi.example.com/orderers/orderer0.bi.example.com/tls/ca.crt
